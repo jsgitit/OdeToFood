@@ -18,7 +18,7 @@ namespace OdeToFood.Pages.Restaurants
         public string Message { get; set; }
         public IEnumerable<Restaurant> Restaurants { get; set; }
 
-        [BindProperty(SupportsGet = true)] // allows searchTerm to be preserved on the form.
+        [BindProperty(SupportsGet = true)] // allows searchTerm value to be preserved on the form.
         public string SearchTerm { get; set; }
         public ListModel(IConfiguration config, IRestaurantData restaurantData)
 
