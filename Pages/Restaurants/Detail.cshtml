@@ -1,8 +1,14 @@
-﻿@page "{restaurantId:int}" 
+﻿@page "{restaurantId:int}"
 
 @model OdeToFood.Pages.Restaurants.DetailModel
 @{
     ViewData["Title"] = "Detail";
+}
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">
+        @Model.Message
+    </div>
 }
 <h2>@Model.Restaurant.Name</h2>
 <div>
