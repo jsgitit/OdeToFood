@@ -22,10 +22,18 @@ namespace OdeToFood.Pages.Restaurants
             this.restaurantData = restaurantData;
             this.htmlHelper = htmlHelper; // for Cuisine option values.
         }
-        public IActionResult OnGet(int restaurantId)
+        public IActionResult OnGet(int? restaurantId) // nullable due to Add New scenario
         {
             Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
-            Restaurant = restaurantData.GetById(restaurantId);
+            if(restaurantId.HasValue) 
+            {
+                Restaurant = restaurantData.GetById(restaurantId.Value);
+            } else
+            {
+                Restaurant = new Restaurant();
+                // could set some defaults here if needed.
+            }
+                
             if (Restaurant == null)
             {
                 return RedirectToPage("./NotFound");
@@ -34,16 +42,27 @@ namespace OdeToFood.Pages.Restaurants
         }
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                // asp.net core is stateless, so rebuild of Cuisines is required when posting
+                Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
+                return Page();
+            }
+
+            if(Restaurant.Id > 0)
             {
                 // assumes the id is the same that's on the form.
-                restaurantData.Update(Restaurant); 
-                restaurantData.Commit();
-                return RedirectToPage("./Detail", new { restaurantId = Restaurant.Id });
+                restaurantData.Update(Restaurant);
+
             }
-            // asp.net core is stateless, so rebuild of Cuisines is required when posting
-            Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();           
-            return Page();
+            else
+            {
+                restaurantData.Add(Restaurant);
+            }
+            
+            restaurantData.Commit();
+            return RedirectToPage("./Detail", new { restaurantId = Restaurant.Id });
+
         }
     }
 }
