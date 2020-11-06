@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +32,12 @@ namespace OdeToFood
                 options.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDb"));
             });
 
-            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            // InMemory Database implementation for DEV
+            // services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+
+            // A Scoped SQL Server Database Implementation, per http request, for Production
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
+
             services.AddRazorPages();
         }
 
