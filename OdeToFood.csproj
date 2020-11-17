@@ -7,12 +7,16 @@
   <ItemGroup>
     <Compile Remove="OdeToFood.Core\**" />
     <Compile Remove="OdeToFood.Data\**" />
+    <Compile Remove="OdeToFood\**" />
     <Content Remove="OdeToFood.Core\**" />
     <Content Remove="OdeToFood.Data\**" />
+    <Content Remove="OdeToFood\**" />
     <EmbeddedResource Remove="OdeToFood.Core\**" />
     <EmbeddedResource Remove="OdeToFood.Data\**" />
+    <EmbeddedResource Remove="OdeToFood\**" />
     <None Remove="OdeToFood.Core\**" />
     <None Remove="OdeToFood.Data\**" />
+    <None Remove="OdeToFood\**" />
   </ItemGroup>
 
   <ItemGroup>
