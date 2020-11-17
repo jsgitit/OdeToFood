@@ -1,19 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="OdeToFood.Core\**" />
-    <Compile Remove="OdeToFood.Data\**" />
-    <Content Remove="OdeToFood.Core\**" />
-    <Content Remove="OdeToFood.Data\**" />
-    <EmbeddedResource Remove="OdeToFood.Core\**" />
-    <EmbeddedResource Remove="OdeToFood.Data\**" />
-    <None Remove="OdeToFood.Core\**" />
-    <None Remove="OdeToFood.Data\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
@@ -25,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="OdeToFood.Data\OdeToFood.Data.csproj" />
+    <ProjectReference Include="..\OdeToFood.Core\OdeToFood.Core.csproj" />
   </ItemGroup>
-  
- </Project>
+
+</Project>
