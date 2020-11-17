@@ -18,7 +18,7 @@ namespace OdeToFood.ViewComponents
         public IViewComponentResult Invoke()
         {
             var count = restaurantData.GetRestaurantCount();
-            return View(count);
+            return View(count);  // View() with no specific view name param, will render the "Default.cshtml"
         }
     }
 }

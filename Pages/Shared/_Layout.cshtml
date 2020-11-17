@@ -45,7 +45,10 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer>
+        <div class="container">
+            <vc:restaurant-count></vc:restaurant-count>
+        </div>
         <div class="container">
             @RenderSection("footer", required: false)
             &copy; 2020 - OdeToFood - <a asp-area="" asp-page="/Privacy">Privacy</a>
