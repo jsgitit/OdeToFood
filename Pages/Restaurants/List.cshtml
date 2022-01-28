@@ -6,22 +6,22 @@
 <head>
     <script src="https://kit.fontawesome.com/7f5e11353c.js" crossorigin="anonymous"></script>
 </head>
-<h1>Restaurants</h1>
-
-<form method="get">
-    <div class="form-group">
-        <div class="input-group">
-            <input type="search" class="form-control-lg"
-                   asp-for="SearchTerm" />
-            <span class="input-group-btn">
-                <button class="btn btn-default">
-                    <i class="fas fa-search fa-2x fa-align-right"></i>
-                </button>
-            </span>
+<div class="bg-info pt-xl-2">
+    <h1>Restaurants</h1>
+    <form method="get">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="search" class="form-control-lg"
+                       asp-for="SearchTerm" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default">
+                        <i class="fas fa-search fa-2x fa-align-right"></i>
+                    </button>
+                </span>
+            </div>
         </div>
-    </div>
-</form>
-
+    </form>
+</div>
 @foreach(var restaurant in Model.Restaurants)
 {
     <partial name="_Summary" model="restaurant" />
