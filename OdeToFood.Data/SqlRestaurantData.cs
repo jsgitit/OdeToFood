@@ -57,7 +57,8 @@ namespace OdeToFood.Data
 
         public Restaurant Update(Restaurant updatedRestaurant)
         {
-            var entity = db.Restaurants.Attach(updatedRestaurant);
+            var entity = db.Restaurants.Attach(updatedRestaurant);  // tells ef to start tracking changes on this entity
+                                                                                      // all fields in the table will be updated to match the entity
             entity.State = EntityState.Modified;
             return updatedRestaurant;
 
