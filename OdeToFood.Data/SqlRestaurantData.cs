@@ -14,10 +14,10 @@ namespace OdeToFood.Data
         {
             this.db = db;
         }
-        public Restaurant Add(Restaurant newRestraunt)
+        public Restaurant Add(Restaurant newRestaurant)
         {
-            db.Restaurants.Add(newRestraunt);
-            return newRestraunt;
+            db.Restaurants.Add(newRestaurant);
+            return newRestaurant;
 
         }
 
