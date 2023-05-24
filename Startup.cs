@@ -33,10 +33,10 @@ namespace OdeToFood
             });
 
             // InMemory Database implementation for DEV
-            // services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
 
             // A Scoped SQL Server Database Implementation, per http request, for Production
-            services.AddScoped<IRestaurantData, SqlRestaurantData>();
+            // services.AddScoped<IRestaurantData, SqlRestaurantData>();
 
             services.AddRazorPages();
         }
