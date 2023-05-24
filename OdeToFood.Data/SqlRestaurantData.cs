@@ -44,7 +44,7 @@ namespace OdeToFood.Data
         public IEnumerable<Restaurant> GetRestaurantByName(string name)
         {
             var query = from r in db.Restaurants
-                        where r.Name.Contains(name, System.StringComparison.InvariantCultureIgnoreCase) || string.IsNullOrEmpty(name)
+                        where r.Name.Contains(name, System.StringComparison.InvariantCultureIgnoreCase) || string.IsNullOrEmpty(name) // updated
                         orderby r.Name
                         select r;
             return query;
