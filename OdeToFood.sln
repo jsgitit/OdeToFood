@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood.Core", "OdeToFood
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood.Data", "OdeToFood.Data\OdeToFood.Data.csproj", "{5611A926-4E24-4B3B-9AC6-FE31C606FD8E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FD0C9FC7-37F8-4006-A91A-4DA772F4A4AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0FD92658-CFA0-43DE-B049-F410325001F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +34,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3822111-BD14-4A86-A317-72A9674FFB4A} = {FD0C9FC7-37F8-4006-A91A-4DA772F4A4AA}
+		{EB7FA1E1-EBB5-4741-ADD0-71B051776F5F} = {FD0C9FC7-37F8-4006-A91A-4DA772F4A4AA}
+		{5611A926-4E24-4B3B-9AC6-FE31C606FD8E} = {FD0C9FC7-37F8-4006-A91A-4DA772F4A4AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBBE699E-A53E-4E20-8E1D-15C68796C7AE}
