@@ -43,11 +43,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="OdeToFood.Data\OdeToFood.Data.csproj" />
+    <Folder Include="Api\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Api\" />
+    <ProjectReference Include="..\OdeToFood.Data\OdeToFood.Data.csproj" />
   </ItemGroup>
   
  </Project>

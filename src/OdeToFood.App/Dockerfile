@@ -4,12 +4,10 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
-
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-ARG BUILD_CONFIGURATION=Release
+
 WORKDIR /src
 COPY ["OdeToFood.csproj", "."]
 COPY ["OdeToFood.Data/OdeToFood.Data.csproj", "OdeToFood.Data/"]
@@ -17,12 +15,12 @@ COPY ["OdeToFood.Core/OdeToFood.Core.csproj", "OdeToFood.Core/"]
 RUN dotnet restore "./OdeToFood.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "./OdeToFood.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./OdeToFood.csproj" -c Release -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./OdeToFood.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+RUN dotnet publish "./OdeToFood.csproj" -c Release -o /app/publish 
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
