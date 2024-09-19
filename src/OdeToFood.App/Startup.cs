@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Xml;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OdeToFood.Core;
 using OdeToFood.Data;
+using System;
 
 namespace OdeToFood
 {
@@ -29,8 +23,17 @@ namespace OdeToFood
         {
             services.AddDbContextPool<OdeToFoodDBContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDb"));
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServiceOnDockerConnection"),
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        // Enable retry on failure for transient errors
+                        sqlOptions.EnableRetryOnFailure(
+                            maxRetryCount: 5,  // The maximum number of retries
+                            maxRetryDelay: TimeSpan.FromSeconds(5),  // Delay between retries
+                            errorNumbersToAdd: null);  // You can specify additional SQL error numbers to retry on
+                    });
             });
+
 
             // InMemory Database implementation for DEV
             //services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();

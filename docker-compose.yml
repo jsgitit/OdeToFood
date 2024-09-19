@@ -1,0 +1,38 @@
+services:
+  sqlserver:
+    container_name: SqlServerContainer
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+    volumes:
+      - sql_vol:/var/opt/mssql  # Use a volume for data persistence
+    ports:
+      - 1435:1433
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 1433"]
+      interval: 12s
+      retries: 5
+    networks:
+      app-network:
+
+  odetofood:
+    container_name: WebAppContainer
+    image: ${DOCKER_REGISTRY-}odetofood
+    build:
+      context: .
+      dockerfile: src/OdeToFood.App/Dockerfile  # Dockerfile is in OdeToFood.App
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "5000:80"
+    depends_on:
+      - "sqlserver"
+    networks:
+      app-network:
+
+networks:
+  app-network:
+
+volumes:
+  sql_vol:

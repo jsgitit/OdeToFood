@@ -1,29 +1,33 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+# Stage 1 - Build
 
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-# This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /app
 
-WORKDIR /src
-COPY ["OdeToFood.csproj", "."]
-COPY ["OdeToFood.Data/OdeToFood.Data.csproj", "OdeToFood.Data/"]
-COPY ["OdeToFood.Core/OdeToFood.Core.csproj", "OdeToFood.Core/"]
-RUN dotnet restore "./OdeToFood.csproj"
+# Copy csproj and restore as distinct layers
+COPY ["src/OdeToFood.App/OdeToFood.App.csproj", "src/OdeToFood.App/"]
+COPY ["src/OdeToFood.Core/OdeToFood.Core.csproj", "src/OdeToFood.Core/"]
+COPY ["src/OdeToFood.Data/OdeToFood.Data.csproj", "src/OdeToFood.Data/"]
+
+RUN dotnet restore ./OdeToFood.App/OdeToFood.App.csproj
+
+# Copy the rest of the source code
 COPY . .
-WORKDIR "/src/."
-RUN dotnet build "./OdeToFood.csproj" -c Release -o /app/build
 
-# This stage is used to publish the service project to be copied to the final stage
+WORKDIR OdeToFood.App
+
+# Build the app
+RUN dotnet build OdeToFood.App.csproj -c Release -o /app/build
+
+# Stage 2 - Publish
 FROM build AS publish
+RUN dotnet publish OdeToFood.App.csproj -c Release -o /app/publish
 
-RUN dotnet publish "./OdeToFood.csproj" -c Release -o /app/publish 
-
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
+# Stage 3 - Final Image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "OdeToFood.dll"]
+ENTRYPOINT ["dotnet", "OdeToFood.App.dll"]

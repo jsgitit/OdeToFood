@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood", "src\OdeToFood.App\OdeToFood.csproj", "{D3822111-BD14-4A86-A317-72A9674FFB4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood.App", "src\OdeToFood.App\OdeToFood.App.csproj", "{D3822111-BD14-4A86-A317-72A9674FFB4A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5611A926-4E24-4B3B-9AC6-FE31C606FD8E} = {5611A926-4E24-4B3B-9AC6-FE31C606FD8E}
 	EndProjectSection
@@ -15,6 +15,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FD0C9FC7-37F8-4006-A91A-4DA772F4A4AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0FD92658-CFA0-43DE-B049-F410325001F0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{26B04890-5735-4CBD-846E-754B28443388}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D3822111-BD14-4A86-A317-72A9674FFB4A} = {D3822111-BD14-4A86-A317-72A9674FFB4A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +39,10 @@ Global
 		{5611A926-4E24-4B3B-9AC6-FE31C606FD8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5611A926-4E24-4B3B-9AC6-FE31C606FD8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5611A926-4E24-4B3B-9AC6-FE31C606FD8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26B04890-5735-4CBD-846E-754B28443388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B04890-5735-4CBD-846E-754B28443388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B04890-5735-4CBD-846E-754B28443388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B04890-5735-4CBD-846E-754B28443388}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

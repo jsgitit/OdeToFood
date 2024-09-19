@@ -5,26 +5,8 @@
     <UserSecretsId>f765848c-840e-4b13-81e9-61c7ce4b9450</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="NewFolder1\**" />
-    <Compile Remove="OdeToFood.Core\**" />
-    <Compile Remove="OdeToFood.Data\**" />
-    <Compile Remove="OdeToFood\**" />
-    <Content Remove="NewFolder1\**" />
-    <Content Remove="OdeToFood.Core\**" />
-    <Content Remove="OdeToFood.Data\**" />
-    <Content Remove="OdeToFood\**" />
-    <EmbeddedResource Remove="NewFolder1\**" />
-    <EmbeddedResource Remove="OdeToFood.Core\**" />
-    <EmbeddedResource Remove="OdeToFood.Data\**" />
-    <EmbeddedResource Remove="OdeToFood\**" />
-    <None Remove="NewFolder1\**" />
-    <None Remove="OdeToFood.Core\**" />
-    <None Remove="OdeToFood.Data\**" />
-    <None Remove="OdeToFood\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
@@ -47,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OdeToFood.Core\OdeToFood.Core.csproj" />
     <ProjectReference Include="..\OdeToFood.Data\OdeToFood.Data.csproj" />
   </ItemGroup>
   
